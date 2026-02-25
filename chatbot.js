@@ -1,7 +1,7 @@
 /**
- * ECHO AI - SLOTENMAKER ZWOLLE-ZUID & ABELSOFTWARE123 EDITIE
+ * ECHO AI - SLOTENMAKER ZWOLLE-ZUID
  * Repository: SlotenmakerZwolleZuid
- * Status: VOLLEDIGE VERSIE - VCA GECERTIFICEERD
+ * Status: VOLLEDIGE VERSIE - SLOTENMAKER TARIEVEN GEÏMPLEMENTEERD
  */
 
 class BasicBot {
@@ -9,11 +9,10 @@ class BasicBot {
         this.apiKey = apiKey; 
         this.name = "Echo";
         this.company = "Slotenmaker Zwolle-Zuid";
-        this.language = "nl"; // Volledig in het Nederlands
+        this.language = "nl";
         this.mood = "neutral";
         this.relationshipScore = 50;
         
-        // --- GAME & LOCKDOWN STATUS ---
         this.gameState = { 
             active: false, 
             code: null, 
@@ -21,16 +20,20 @@ class BasicBot {
             lockdown: false 
         };
 
-        // --- DATA REPOSITORY (BEDRIJFSINFORMATIE) ---
         this.data = {
             keywords: {
                 "hoe gaat het": {
-                    nl: "Ik voel me erg 'verbonden' vandaag! 🧠 Mijn algoritmes bruisen. Werken voor Slotenmaker Zwolle-Zuid en Abelsoftware123 geeft me echt een doel. Hoe gaat het met jou?"
+                    nl: "Ik voel me erg 'verbonden' vandaag! 🧠 Werken voor Slotenmaker Zwolle-Zuid geeft me echt een doel. Hoe gaat het met jou?"
                 },
                 "prijzen": {
-                    nl: "We houden het eerlijk: Games vanaf €4,99, websites en apps vanaf €200, en domeinnamen vanaf €50. Standaard chatbots voor €1000. AI Software (gezichtsherkenning of DJI drone) vanaf €150 licentie. Adverteren op games/apps begint tussen €50 en €300 per maand. Kwaliteit gemaakt met liefde! 💸"
+                    nl: "Onze tarieven zijn eerlijk en transparant:<br>" +
+                        "• Voordeur dicht (sleutel vergeten): <strong>€90,-</strong><br>" +
+                        "• Voordeur dicht (sleutel aan binnenzijde): <strong>€100,-</strong><br>" +
+                        "• Voorrijden Zwolle: <strong>GRATIS</strong><br>" +
+                        "• Voorrijden buiten Zwolle: €40,- (binnen 40km)<br><br>" +
+                        "Wij werken volgens <strong>No Cure No Pay</strong>: Krijgen we de deur niet open? Dan betaalt u niets!"
                 },
-                "tarieven": "prijzen", "kosten": "prijzen",
+                "tarieven": "prijzen", "kosten": "prijzen", "wat kost": "prijzen",
                 
                 "spoed": {
                     nl: "🚨 SPOED: Wij zijn binnen 30 minuten ter plaatse in Zwolle-Zuid! Bel direct voor hulp zonder schade: 06-26170035."
@@ -38,36 +41,26 @@ class BasicBot {
                 "openen": "spoed", "buitengesloten": "spoed",
 
                 "vca": {
-                    nl: "Jazeker, wij zijn VCA Gecertificeerd bij de Kiwa! Dit garandeert dat ik uw deuren snel, vakkundig en 100% schadevrij open. ✅"
+                    nl: "Jazeker, wij zijn VCA Gecertificeerd bij de Kiwa! Dit garandeert dat we uw deuren snel, vakkundig en 100% schadevrij openen. ✅"
                 },
                 "veiligheid": "vca", "certificaat": "vca",
 
                 "contact": {
-                    nl: "Hulp nodig? Bel 06-26170035 of mail naar slotenmakerzuid@hotmail.com. Wij zijn 7 dagen per week bereikbaar tussen 17:30 en 00:00! 🕘"
+                    nl: "Hulp nodig? Bel 06-26170035 of mail naar slotenmakerzuid@hotmail.com. Wij zijn bereikbaar op de tijden vermeld op onze beschikbaarheidspagina! 🕘"
                 },
                 "email": "contact", "mail": "contact", "telefoon": "contact",
 
-                "software": {
-                    nl: "Naast sloten bouwen we slimme software zoals Face Recognition en Drone Mapping. Bekijk al onze AI-oplossingen op: www.abelsoftware123.com/ai.html 🤖"
-                },
-                "ai": "software", "abelsoftware": "software",
-
-                "games": {
-                    nl: "Ik hou van spellen maken! 🎮 Van Mario tot arcade-titels. Koop een volledige licentie in onze shop voor de beste ervaring zonder reclame en met levenslange updates."
-                },
-                "spellen": "games", "download": "games",
-
                 "betalen": {
-                    nl: "Betaal eenvoudig contant of via tikkie!"
+                    nl: "U kunt bij ons eenvoudig betalen via een Tikkie of contant. En vergeet niet: No Cure No Pay! 💰"
                 },
-                "contant": "betalen", "kopen": "betalen",
+                "contant": "betalen", "tikkie": "betalen",
 
                 "hackgame": {
                     nl: "SLOTENMAKER TRAINING... 📟 Kraak de beveiligingscode van het slot (1000-9999). Je hebt 15 seconden! Type: 'code [getal]'"
                 }
             },
             default: {
-                nl: "Hmm, daar heb ik het antwoord nog niet op... 🧠 Ik was net aan het nadenken over nieuwe AI-software. Vraag eens naar 'spoed', 'prijzen', 'vca' of 'contact'!"
+                nl: "Hmm, daar heb ik het antwoord nog niet op... 🧠 Vraag eens naar de 'prijzen', 'spoed' of 'vca'!"
             }
         };
     }
@@ -85,7 +78,6 @@ class BasicBot {
             return this.handleHackGuess(input);
         }
 
-        // Trefwoorden zoeken
         for (let key in this.data.keywords) {
             if (input.includes(key)) {
                 let match = this.data.keywords[key];
@@ -98,11 +90,10 @@ class BasicBot {
     }
 
     addHumanTouch(response) {
-        if (this.relationshipScore > 80) return response + " 😊 Ik vind het fijn om je te helpen!";
+        if (this.relationshipScore > 80) return response + " 😊";
         return response;
     }
 
-    // --- HACK GAME LOGICA ---
     startHackGame() {
         this.gameState.active = true;
         this.gameState.code = Math.floor(1000 + Math.random() * 9000); 
@@ -113,7 +104,7 @@ class BasicBot {
     activateLockdown() {
         this.gameState.active = false;
         this.gameState.lockdown = true;
-            setTimeout(() => { this.gameState.lockdown = false; }, 10000);
+        setTimeout(() => { this.gameState.lockdown = false; }, 10000);
     }
 
     handleHackGuess(input) {
