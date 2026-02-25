@@ -1,89 +1,218 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-    <title>Slotenmaker Zwolle-Zuid (VCA Gecertificeerd)</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <title>Slotenmaker Zwolle-Zuid</title>
+    <style>
+        /* --- CLOUD UI STYLE MET BEDRIJFSKLEUREN --- */
+        #chat-launcher {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 65px;
+            height: 65px;
+            /* Groene gradient passend bij je logo/app knop */
+            background: linear-gradient(135deg, #28a745 0%, #85e085 100%);
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+            z-index: 1001;
+            animation: floatCloud 4s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        #chat-container.cloud-style {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            width: 350px;
+            height: 520px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 30px 30px 5px 30px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+            border: 1px solid rgba(40, 167, 69, 0.2);
+            z-index: 1000;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        #chat-header {
+            background: linear-gradient(to right, #28a745, #5cd65c);
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-btn { cursor: pointer; font-size: 20px; }
+
+        .mode-selector {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: #f9fdf9;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quick-btn {
+            border: 1px solid #28a745;
+            background: white;
+            color: #28a745;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .quick-btn:hover { background: #28a745; color: white; }
+
+        #messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #ffffff;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 13px;
+            line-height: 1.5;
+            animation: bubblePop 0.3s ease-out;
+        }
+
+        .bot-msg {
+            align-self: flex-start;
+            background: #f1f1f1;
+            color: #333;
+            border-bottom-left-radius: 2px;
+        }
+
+        .user-msg {
+            align-self: flex-end;
+            background: #28a745;
+            color: white;
+            border-bottom-right-radius: 2px;
+        }
+
+        #input-area {
+            padding: 15px;
+            display: flex;
+            background: white;
+            gap: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        #user-input {
+            flex: 1;
+            border: 2px solid #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        #send-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* ANIMATIES */
+        @keyframes floatCloud {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bubblePop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Welkom</a>
-        <a href="over-ons.html">Over ons</a>
-        <a href="tarieven.html">Tarieven & Prijzen</a>
-        <a href="beschikbaarheid.html">Beschikbaarheid</a>
-    </nav>
-    <div class="container">
-        <h1>VCA Gecertificeerde Slotenmaker Zwolle-Zuid</h1>
-        <p>NO Cure is No Pay! Als professionele slotenmaker sta ik sinds 2025 klaar om u uit de brand te helpen. Mijn missie is om uw zorgen weg te nemen door uw deuren snel, vakkundig en zonder schade te openen. Mijn vakkennis en persoonlijke service garanderen dat u altijd op mij kunt rekenen. 7 dagen per week. We zijn VCA Gecertificeerd bij de Kiwa</p>
-        <p>Voor spoedgevallen en directe hulp, bel mij direct op: <strong>06-26170035 </strong>. Ik ben altijd <strong>binnen 30 minuten op locatie</strong>.</p>
-        <p>Heeft u vragen over onze diensten of wilt u meer informatie? Stuur een e-mail naar: <strong>slotenmakerzuid@hotmail.com</strong></p>
-    </div>
-    <div class="container">
-        <h2>Download gratis onze App Slotenmaker Zwolle-Zuid</h2>
-        <p>Voor nog snellere service en scherpe tarieven! Download onze app nu!</p>
-        <a href="https://www.dropbox.com/scl/fi/nn50f72n9g4xplqbdrt0q/_Slotenmaker_Zuid_19141679.apk?rlkey=7puk2nhx0q9vnqk6wc7g4jw4u&st=tn0sdbn7&dl=0" class="app-button">Download de App </a>
-    </div>
-<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
 
-    <div id="chat-container">
+    <button id="chat-launcher" onclick="window.toggleChat()">☁️</button>
+
+    <div id="chat-container" class="cloud-style">
         <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
+            <span>☁️ Slotenmaker Zwolle AI</span>
+            <span class="close-btn" onclick="window.toggleChat()">✕</span>
         </div>
+        
         <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
-</div>
+            <button class="quick-btn" onclick="handleQuickReply('prijzen')">💰 Prijzen</button>
+            <button class="quick-btn" onclick="handleQuickReply('spoed')">🚨 Spoed (30 min)</button>
+            <button class="quick-btn" onclick="handleQuickReply('contact')">📞 Contact</button>
+            <button class="quick-btn" onclick="handleQuickReply('vca')">✅ VCA Status</button>
+        </div>
 
         <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
+            <div class="msg bot-msg">
+                <strong>Welkom bij Slotenmaker Zwolle-Zuid!</strong><br><br>
+                Ik ben je AI assistent. Je kunt me alles vragen over onze slotenservice, tarieven of VCA certificering.<br><br>
+                Heeft u direct hulp nodig? Bel dan: <strong>06-26170035</strong>
+            </div>
         </div>
+
         <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
+            <input type="text" id="user-input" placeholder="Stel een vraag..." onkeypress="window.handleKey(event)">
+            <button id="send-btn" onclick="window.askBot()">➤</button>
         </div>
     </div>
 
     <script src="chatbot.js"></script>
-
     <script>
         let echo = null;
 
         window.toggleChat = function() {
             const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
             if (chat.style.display === "flex") {
                 chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
             } else {
                 chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
                 if (!echo && typeof BasicBot !== 'undefined') {
                     echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
                 }
             }
         };
 
         window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
+
+        window.handleQuickReply = function(keyword) {
+            const input = document.getElementById("user-input");
+            if (input) {
+                input.value = keyword;
+                window.askBot();
+            }
+        };
 
         window.askBot = async function() {
             const input = document.getElementById("user-input");
@@ -100,27 +229,9 @@ window.handleQuickReply = function(keyword) {
                 setTimeout(() => {
                     container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
                     container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
+                }, 500);
+            } catch (err) { console.error("Echo Error:", err); }
         };
-
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
     </script>
 </body>
 </html>
-
-
