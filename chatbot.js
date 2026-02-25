@@ -36,7 +36,7 @@ class BasicBot {
                 "tarieven": "prijzen", "kosten": "prijzen", "wat kost": "prijzen",
                 
                 "spoed": {
-                    nl: "🚨 SPOED: Wij zijn binnen 30 minuten ter plaatse in Zwolle-Zuid! Bel direct voor hulp zonder schade: 06-26170035."
+                    nl: "🚨 SPOED: Wij zijn binnen 30 minuten ter plaatse in Zwolle-Zuid! Bel direct voor hulp zonder schade: 06-17867663"
                 },
                 "openen": "spoed", "buitengesloten": "spoed",
 
