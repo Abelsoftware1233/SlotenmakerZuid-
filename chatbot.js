@@ -46,7 +46,7 @@ class BasicBot {
                 "veiligheid": "vca", "certificaat": "vca",
 
                 "contact": {
-                    nl: "Hulp nodig? Bel 06-26170035 of mail naar slotenmakerzuid@hotmail.com. Wij zijn bereikbaar op de tijden vermeld op onze beschikbaarheidspagina! 🕘"
+                    nl: "Hulp nodig? Bel 06-17867663 of mail naar slotenmakerzuid@hotmail.com. Wij zijn bereikbaar op de tijden vermeld op onze beschikbaarheidspagina! 🕘"
                 },
                 "email": "contact", "mail": "contact", "telefoon": "contact",
 
