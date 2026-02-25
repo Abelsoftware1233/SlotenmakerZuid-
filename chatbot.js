@@ -43,7 +43,7 @@ class BasicBot {
                 "veiligheid": "vca", "certificaat": "vca",
 
                 "contact": {
-                    nl: "Hulp nodig? Bel 06-26170035 of mail naar slotenmakerzuid@hotmail.com. Wij zijn 7 dagen per week bereikbaar tussen 9:00 en 17:00! 🕘"
+                    nl: "Hulp nodig? Bel 06-26170035 of mail naar slotenmakerzuid@hotmail.com. Wij zijn 7 dagen per week bereikbaar tussen 17:30 en 00:00! 🕘"
                 },
                 "email": "contact", "mail": "contact", "telefoon": "contact",
 
@@ -58,9 +58,9 @@ class BasicBot {
                 "spellen": "games", "download": "games",
 
                 "betalen": {
-                    nl: "Klaar voor de volledige versie? 💰 Je kunt onze apps en games veilig kopen via PayPal op: www.abelsoftware123.com/payments.html. Jouw steun helpt mij groeien!"
+                    nl: "Betaal eenvoudig contant of via tikkie!"
                 },
-                "paypal": "betalen", "kopen": "betalen",
+                "contant": "betalen", "kopen": "betalen",
 
                 "hackgame": {
                     nl: "SLOTENMAKER TRAINING... 📟 Kraak de beveiligingscode van het slot (1000-9999). Je hebt 15 seconden! Type: 'code [getal]'"
