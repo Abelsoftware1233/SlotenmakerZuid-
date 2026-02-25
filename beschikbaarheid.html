@@ -3,26 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beschikbaarheid - Slotenmaker Zuid</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Beschikbaarheid - Slotenmaker Zwolle-Zuid</title>
+    <style>
+        /* --- CLOUD UI CSS (Consistent met de rest) --- */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; line-height: 1.6; }
+        
+        nav { background: #28a745; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; font-size: 16px; }
+        nav a:hover { text-decoration: underline; }
+
+        .hero { background: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid #28a745; }
+        .hero h1 { color: #28a745; margin-bottom: 10px; }
+
+        .container { max-width: 800px; margin: 30px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        /* Openingstijden Tabel Style */
+        .hours-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .hours-table tr { border-bottom: 1px solid #eee; }
+        .hours-table td { padding: 12px; font-size: 1.1em; }
+        .hours-table td:first-child { font-weight: bold; color: #28a745; width: 40%; }
+        .hours-table tr:last-child { border-bottom: none; }
+
+        .status-badge { 
+            display: inline-block; background: #28a745; color: white; padding: 5px 15px; 
+            border-radius: 20px; font-size: 0.9em; margin-bottom: 20px; 
+        }
+
+        /* --- CLOUD UI CHATBOT CSS --- */
+        #chat-launcher {
+            position: fixed; bottom: 25px; right: 25px; width: 65px; height: 65px;
+            background: linear-gradient(135deg, #28a745 0%, #85e085 100%);
+            border: none; border-radius: 50%; font-size: 30px; cursor: pointer;
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3); z-index: 1001;
+            animation: floatCloud 4s ease-in-out infinite; display: flex; align-items: center; justify-content: center; color: white;
+        }
+        #chat-container.cloud-style {
+            display: none; flex-direction: column; position: fixed; bottom: 100px; right: 25px;
+            width: 350px; height: 520px; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px); border-radius: 30px 30px 5px 30px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.2); border: 1px solid rgba(40, 167, 69, 0.2);
+            z-index: 1000; overflow: hidden; animation: fadeIn 0.4s ease-out;
+        }
+        #chat-header { background: linear-gradient(to right, #28a745, #5cd65c); color: white; padding: 15px 20px; font-weight: bold; display: flex; justify-content: space-between; }
+        .mode-selector { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 12px; background: #f9fdf9; border-bottom: 1px solid #eee; }
+        .quick-btn { border: 1px solid #28a745; background: white; color: #28a745; padding: 6px 12px; border-radius: 15px; font-size: 11px; cursor: pointer; }
+        #messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+        .msg { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 13px; }
+        .bot-msg { align-self: flex-start; background: #f1f1f1; border-bottom-left-radius: 2px; }
+        .user-msg { align-self: flex-end; background: #28a745; color: white; border-bottom-right-radius: 2px; }
+        #input-area { padding: 15px; display: flex; background: white; gap: 10px; border-top: 1px solid #eee; }
+        #user-input { flex: 1; border: 2px solid #f0f0f0; padding: 10px 15px; border-radius: 25px; outline: none; }
+        #send-btn { background: #28a745; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+        
+        @keyframes floatCloud { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body>
+
     <nav>
         <a href="index.html">Welkom</a>
         <a href="over-ons.html">Over ons</a>
         <a href="tarieven.html">Tarieven & Prijzen</a>
         <a href="beschikbaarheid.html">Beschikbaarheid</a>
     </nav>
-    <div class="container">
-        <h1>Beschikbaarheid</h1>
-        <p>Maandag van 18:30 tot 00:00
-           Dinsdag van 18:30 tot 00:00
-           Woensdag van 18:30 tot 00:00
-           Donderdag van 18:30 tot 00:00
-           Vrijdag van 18:30 tot 01:00
-           Zaterdag van 08:00 tot 01:00
-           Zondag van 08:00 tot 01:00</p>
+
+    <div class="hero">
+        <h1>Onze Beschikbaarheid</h1>
+        <p>Wanneer staan wij voor u klaar in Zwolle-Zuid?</p>
     </div>
+
+    <div class="container">
+        <div class="status-badge">✅ 7 Dagen per week beschikbaar</div>
+        
+        <table class="hours-table">
+            <tr><td>Maandag</td><td>18:30 - 00:00 uur</td></tr>
+            <tr><td>Dinsdag</td><td>18:30 - 00:00 uur</td></tr>
+            <tr><td>Woensdag</td><td>18:30 - 00:00 uur</td></tr>
+            <tr><td>Donderdag</td><td>18:30 - 00:00 uur</td></tr>
+            <tr><td>Vrijdag</td><td>18:30 - 01:00 uur</td></tr>
+            <tr><td>Zaterdag</td><td>08:00 - 01:00 uur</td></tr>
+            <tr><td>Zondag</td><td>08:00 - 01:00 uur</td></tr>
+        </table>
+
+        <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 10px; border: 1px solid #ffeeba;">
+            <strong>Hulp nodig buiten deze uren?</strong><br>
+            Bel altijd even naar <strong>06-26170035</strong>. In noodgevallen proberen we altijd een oplossing te vinden!
+        </div>
+    </div>
+
+    <button id="chat-launcher" onclick="window.toggleChat()">☁️</button>
+
+    <div id="chat-container" class="cloud-style">
+        <div id="chat-header">
+            <span>☁️ Slotenmaker Zwolle AI</span>
+            <span class="close-btn" onclick="window.toggleChat()">✕</span>
+        </div>
+        
+        <div class="mode-selector">
+            <button class="quick-btn" onclick="handleQuickReply('beschikbaarheid')">📅 Wanneer open?</button>
+            <button class="quick-btn" onclick="handleQuickReply('spoed')">🚨 Spoed</button>
+            <button class="quick-btn" onclick="handleQuickReply('contact')">📞 Bellen</button>
+        </div>
+
+        <div id="messages">
+            <div class="msg bot-msg">
+                <strong>Heeft u vragen over onze tijden?</strong><br><br>
+                Op werkdagen ben ik er vanaf 18:30, en in het weekend de hele dag en avond!
+            </div>
+        </div>
+
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="Stel een vraag..." onkeypress="window.handleKey(event)">
+            <button id="send-btn" onclick="window.askBot()">➤</button>
+        </div>
+    </div>
+
+    <script src="chatbot.js"></script>
+    <script>
+        let echo = null;
+        window.toggleChat = function() {
+            const chat = document.getElementById("chat-container");
+            chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+            if (!echo && typeof BasicBot !== 'undefined') echo = new BasicBot();
+        };
+        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
+        window.handleQuickReply = function(keyword) {
+            document.getElementById("user-input").value = keyword;
+            window.askBot();
+        };
+        window.askBot = async function() {
+            const input = document.getElementById("user-input");
+            const container = document.getElementById("messages");
+            const text = input.value.trim();
+            if (!text || !echo) return;
+            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
+            input.value = "";
+            container.scrollTop = container.scrollHeight;
+            try {
+                const response = await echo.chat(text);
+                setTimeout(() => {
+                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
+                    container.scrollTop = container.scrollHeight;
+                }, 500);
+            } catch (err) { console.error(err); }
+        };
+    </script>
 </body>
 </html>
-
