@@ -45,6 +45,11 @@ class BasicBot {
                 },
                 "veiligheid": "vca", "certificaat": "vca",
 
+"openingstijden": {
+                    nl: "Maandag tot en met Donderdag van 17:30 tot 00:00 🕠Vrijdag tot en met Zondag 17:30 tot 01:00 🕠"
+                },
+                "openingstijden": "beschikbaarheid", "opening": "uren",
+
                 "contact": {
                     nl: "Hulp nodig? Bel 06-17867663 of mail naar slotenmakerzuid@hotmail.com. Wij zijn bereikbaar op de tijden vermeld op onze beschikbaarheidspagina! 🕘"
                 },
