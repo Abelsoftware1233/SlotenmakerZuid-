@@ -36,7 +36,7 @@ class BasicBot {
                 "tarieven": "prijzen", "kosten": "prijzen", "wat kost": "prijzen",
                 
                 "spoed": {
-                    nl: "🚨 SPOED: Wij zijn binnen 30 minuten ter plaatse in Zwolle! & 60 minuten buiten Zwolle!Bel direct voor hulp zonder schade: 06-17867663"
+                    nl: "🚨 SPOED: Wij zijn binnen 30 minuten ter plaatse in Zwolle! & 60 minuten buiten Zwolle! Bel direct voor hulp zonder schade: 06-17867663"
                 },
                 "openen": "spoed", "buitengesloten": "spoed",
 
@@ -48,7 +48,7 @@ class BasicBot {
 "openingstijden": {
                     nl: "Maandag tot en met Donderdag van 17:30 tot 00:00 🕠Vrijdag tot en met Zondag 17:30 tot 01:00 🕠"
                 },
-                "openingstijden": "beschikbaarheid", "opening": "uren",
+                "openingsuren": "beschikbaarheid", "opening": "uren",
 
                 "contact": {
                     nl: "Hulp nodig? Bel 06-17867663 of mail naar slotenmakerzuid@hotmail.com. Wij zijn bereikbaar op de tijden vermeld op onze beschikbaarheidspagina! 🕘"
