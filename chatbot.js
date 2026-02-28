@@ -7,7 +7,7 @@
 class BasicBot {
     constructor(apiKey) {
         this.apiKey = apiKey; 
-        this.name = "Echo";
+        this.name = "Lisa";
         this.company = "Slotenmaker Zwolle-Zuid";
         this.language = "nl";
         
