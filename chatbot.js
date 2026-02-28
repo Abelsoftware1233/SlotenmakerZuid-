@@ -26,7 +26,7 @@ class BasicBot {
         this.data = {
             keywords: {
                 "hallo": {
-                    nl: "Goedendag! Welkom bij Slotenmaker Zwolle-Zuid. Ik ben Echo. Hoe kan ik u vandaag helpen? 🛠️"
+                    nl: "Goedendag! Welkom bij Slotenmaker Zwolle-Zuid. Ik ben Lisa. Hoe kan ik u vandaag helpen? 🛠️"
                 },
                 "hoi": "hallo",
                 "hey": "hallo",
