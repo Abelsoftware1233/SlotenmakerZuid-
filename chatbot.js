@@ -1,7 +1,7 @@
 /**
  * ECHO AI - SLOTENMAKER ZWOLLE-ZUID
  * Repository: SlotenmakerZwolleZuid
- * Status: VOLLEDIGE VERSIE - SLOTENMAKER TARIEVEN GEÏMPLEMENTEERD
+ * Status: VERBETERDE VERSIE (NLP & EMOTIE GEÏMPLEMENTEERD)
  */
 
 class BasicBot {
@@ -10,8 +10,11 @@ class BasicBot {
         this.name = "Echo";
         this.company = "Slotenmaker Zwolle-Zuid";
         this.language = "nl";
-        this.mood = "neutral";
-        this.relationshipScore = 50;
+        
+        // Emotie en relatie beheer
+        this.mood = "professioneel"; // professioneel, empathisch, vriendelijk
+        this.interactionCount = 0;
+        this.relationshipScore = 50; // 0-100
         
         this.gameState = { 
             active: false, 
@@ -22,80 +25,114 @@ class BasicBot {
 
         this.data = {
             keywords: {
+                "hallo": {
+                    nl: "Goedendag! Welkom bij Slotenmaker Zwolle-Zuid. Ik ben Echo. Hoe kan ik u vandaag helpen? 🛠️"
+                },
+                "hoi": "hallo",
+                "hey": "hallo",
+
                 "hoe gaat het": {
-                    nl: "Ik voel me erg 'verbonden' vandaag! 🧠 Werken voor Slotenmaker Zwolle-Zuid geeft me echt een doel. Hoe gaat het met jou?"
+                    nl: "Ik ben in topconditie! 🧠 Altijd klaar om mensen te helpen met hun sloten. En met u? Hopelijk heeft u zichzelf niet buitengesloten?"
                 },
                 "prijzen": {
-                    nl: "Onze tarieven zijn eerlijk en transparant:<br>" +
+                    nl: "Ik begrijp dat duidelijkheid belangrijk is. Onze tarieven zijn eerlijk:<br>" +
                         "• Voordeur dicht (sleutel vergeten): <strong>€90,-</strong><br>" +
                         "• Voordeur dicht (sleutel aan binnenzijde): <strong>€100,-</strong><br>" +
-                        "• Voorrijden Zwolle: <strong>GRATIS</strong><br>" +
+                        "• Voorrijden in Zwolle: <strong>GRATIS</strong><br>" +
                         "• Voorrijden buiten Zwolle: €40,- (binnen 40km)<br><br>" +
-                        "Wij werken volgens <strong>No Cure No Pay</strong>: Krijgen we de deur niet open? Dan betaalt u niets!"
+                        "<strong>No Cure No Pay</strong>: Krijgen we de deur niet open? Dan betaalt u niets! Dat is onze garantie. 🤝"
                 },
                 "tarieven": "prijzen", "kosten": "prijzen", "wat kost": "prijzen",
                 
                 "spoed": {
-                    nl: "🚨 SPOED: Wij zijn binnen 30 minuten ter plaatse in Zwolle! & 60 minuten buiten Zwolle! Bel direct voor hulp zonder schade: 06-17867663"
+                    nl: "🚨 <strong>SPOED:</strong> Blijf rustig. Wij zijn binnen 30 minuten ter plaatse in Zwolle (buiten Zwolle 60 min). Bel direct voor hulp zonder schade: <strong>06-17867663</strong>"
                 },
-                "openen": "spoed", "buitengesloten": "spoed",
+                "openen": "spoed", "buitengesloten": "spoed", "sleutel kwijt": "spoed", "slot kapot": "spoed",
 
                 "vca": {
-                    nl: "Jazeker, wij zijn VCA Gecertificeerd bij de Kiwa! Dit garandeert dat we uw deuren snel, vakkundig en 100% schadevrij openen. ✅"
+                    nl: "Kwaliteit staat voorop. Wij zijn VCA Gecertificeerd bij de Kiwa! Dat betekent: snel, vakkundig en 100% schadevrij werken. ✅"
                 },
-                "veiligheid": "vca", "certificaat": "vca",
+                "veiligheid": "vca", "certificaat": "vca", "betrouwbaar": "vca",
 
-"openingstijden": {
-                    nl: "Maandag tot en met Donderdag van 17:30 tot 00:00 🕠Vrijdag tot en met Zondag 17:30 tot 01:00 🕠"
+                "openingstijden": {
+                    nl: "Wij staan voor u klaar:<br>Ma t/m Do: <strong>17:30 - 00:00</strong> 🕠<br>Vr t/m Zo: <strong>17:30 - 01:00</strong> 🕠"
                 },
-                "openingstijden": "beschikbaarheid", "opening": "openingstijden",
+                "beschikbaarheid": "openingstijden", "open": "openingstijden",
 
                 "contact": {
-                    nl: "Hulp nodig? Bel 06-17867663 of mail naar slotenmakerzuid@hotmail.com. Wij zijn bereikbaar op de tijden vermeld op onze beschikbaarheidspagina! 🕘"
+                    nl: "Hulp nodig? Bel <strong>06-17867663</strong> of mail naar slotenmakerzuid@hotmail.com. We zijn er voor u op de vermelde tijden! 🕘"
                 },
                 "email": "contact", "mail": "contact", "telefoon": "contact",
 
                 "betalen": {
-                    nl: "U kunt bij ons eenvoudig betalen via een Tikkie of contant. En vergeet niet: No Cure No Pay! 💰"
+                    nl: "U kunt makkelijk betalen via een Tikkie of contant. Veilig en snel. 💰"
                 },
                 "contant": "betalen", "tikkie": "betalen",
 
+                "dank": {
+                    nl: "Graag gedaan! Blij dat ik kon helpen. 👷‍♂️"
+                },
+                "bedankt": "dank",
+
                 "hackgame": {
-                    nl: "SLOTENMAKER TRAINING... 📟 Kraak de beveiligingscode van het slot (1000-9999). Je hebt 15 seconden! Type: 'code [getal]'"
+                    nl: "TRAININGSDUUR... 📟 Kraak de beveiligingscode van het slot (1000-9999). Je hebt maar 15 seconden! Type: 'code [getal]'"
                 }
             },
             default: {
-                nl: "Hmm, daar heb ik het antwoord nog niet op... 🧠 Vraag eens naar de 'prijzen', 'spoed' of 'vca'!"
+                nl: "Dat heb ik niet helemaal begrepen. 🧠 Vraag me gerust naar onze 'prijzen', 'spoed' service of 'openingstijden'."
             }
         };
     }
 
-    // --- CORE LOGICA ---
+    // --- CORE LOGICA MET NLP TOUCH ---
     async chat(userInput) {
+        this.interactionCount++;
         const input = userInput.toLowerCase().trim();
+        
         if (!input) return "";
 
+        // Verhoog relatie score bij elk gesprek
+        if (this.interactionCount > 3) this.relationshipScore = 70;
+        if (this.interactionCount > 6) this.relationshipScore = 90;
+
         if (this.gameState.lockdown) {
-            return "🚨 SYSTEEM IN LOCKDOWN! Beveiliging wordt hersteld... Wacht 10 seconden.";
+            return "🚨 <strong>SYSTEEM LOCKDOWN!</strong> Beveiliging wordt hersteld... Wacht 10 seconden.";
         }
 
         if (this.gameState.active && input.startsWith("code")) {
             return this.handleHackGuess(input);
         }
 
+        // NLP Zoekfunctie
         for (let key in this.data.keywords) {
             if (input.includes(key)) {
                 let match = this.data.keywords[key];
+                
+                // Doorverwijzing naar andere sleutel
                 if (typeof match === "string") match = this.data.keywords[match];
+                
                 if (key === "hackgame") return this.startHackGame();
-                return this.addHumanTouch(match[this.language]);
+                
+                return this.addEmpathy(match[this.language], input);
             }
         }
+        
         return this.data.default[this.language];
     }
 
-    addHumanTouch(response) {
-        if (this.relationshipScore > 80) return response + " 😊";
+    // --- EMOTIE EN NLP FUNCTIES ---
+    
+    addEmpathy(response, input) {
+        // Empathie toevoegen als ze buitengesloten zijn
+        if (input.includes("buitengesloten") || input.includes("sleutel kwijt")) {
+            return "Wat vervelend dat u buitengesloten bent! 😟 " + response;
+        }
+        
+        // Vriendelijkheid verhogen op basis van relatie
+        if (this.relationshipScore > 80) {
+            return response + " 😊";
+        }
+        
         return response;
     }
 
@@ -117,9 +154,9 @@ class BasicBot {
         if (guess === this.gameState.code) {
             clearTimeout(this.gameState.timer);
             this.gameState.active = false;
-            return "SLOT GEOPEND! 🔓 Je bent een echte vakman!";
+            return "SLOT GEOPEND! 🔓 Goed gedaan, je hebt de techniek onder de knie!";
         }
-        return "FOUTIEVE CODE! Probeer het snel nog eens...";
+        return "FOUTIEVE CODE! ⚠️ Snel, probeer het nog eens voordat de tijd om is!";
     }
 }
 
