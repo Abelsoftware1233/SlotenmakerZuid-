@@ -40,21 +40,33 @@
         }
         .app-button:hover { transform: scale(1.05); }
 
-        /* --- BUTTONS & SECTIONS --- */
+        /* --- VERNIEUWDE CONTACT KNOP --- */
         .groene-knop { 
-            padding: 12px 20px; 
+            display: inline-block;
+            padding: 15px 35px; 
             border: none;
-            border-radius: 8px; 
+            border-radius: 50px; 
+            font-size: 16px;
             font-weight: bold; 
             text-transform: uppercase; 
-            color: #000; 
-            background-color: #00ff00; 
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4); 
+            letter-spacing: 1px;
+            color: white; 
+            background: linear-gradient(135deg, #28a745 0%, #208837 100%); 
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3); 
             text-decoration: none; 
-            display: inline-block; 
-            margin: 10px;
-            transition: 0.3s;
+            margin: 20px auto;
+            transition: all 0.3s ease;
             cursor: pointer;
+        }
+
+        .groene-knop:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.4); 
+            background: linear-gradient(135deg, #2ebe4f 0%, #208837 100%);
+        }
+
+        .groene-knop:active {
+            transform: translateY(-1px); 
         }
 
         /* De Cloud UI Styles */
@@ -126,10 +138,11 @@
         <h2>Beschikbaarheid</h2>
         <p>Wij zijn <strong>7 dagen per week</strong> bereikbaar voor spoedgevallen in Zwolle en omgeving.</p>
         <p>E-mail: <strong>slotenmakerzuid@hotmail.com</strong></p>
-    </div>
-
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="mailto:slotenmakerzuid@hotmail.com" class="groene-knop">Contact Us</a>
+        
+        <!-- Prachtige nieuwe contactknop, netjes gepositioneerd binnen de container -->
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="mailto:slotenmakerzuid@hotmail.com" class="groene-knop">✉️ Contact Us</a>
+        </div>
     </div>
 
     <button id="chat-launcher" onclick="window.toggleChat()">☁️</button>
