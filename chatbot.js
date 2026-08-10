@@ -60,7 +60,7 @@ class BasicBot {
                 "beschikbaarheid": "openingstijden", "open": "openingstijden",
 
                 "contact": {
-                    nl: "Hulp nodig? Bel <strong>06-17867663</strong> of mail naar slotenmakerzuid@hotmail.com. We zijn er voor u op de vermelde tijden! 🕘"
+                    nl: "Hulp nodig? Bel <strong>06-10667625</strong> of mail naar slotenmakerzuid@hotmail.com. We zijn er voor u op de vermelde tijden! 🕘"
                 },
                 "email": "contact", "mail": "contact", "telefoon": "contact",
 
